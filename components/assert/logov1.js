@@ -3,9 +3,9 @@ import { Icon} from "@chakra-ui/core";
 const Logov1 = props => {
 
     return(
-    <Icon viewBox="0 0 143 32" {...props}>
+    <Icon viewBox="0 0 175 130" {...props}>
         <defs>
-            <style>{".cls-1,.cls-2,.cls-3,.cls-4{fill:none;stroke:#e6e67d;stroke-miterlimit:10;}.cls-2{font-size:113px;stroke-width:3px;letter-spacing:-0.01em;}.cls-2,.cls-4{font-family:BungeeInline-Regular, Bungee Inline;}.cls-3{font-size:22.23px;stroke-width:0.75px;font-family:AgencyFB-Reg, Agency FB;}.cls-4{font-size:101.64px;stroke-width:2px;}"}</style>
+            <style>{".cls-1{fill:none;stroke:#e6e67d;stroke-width:8px;}.cls-1,.cls-3{stroke-miterlimit:10;}.cls-2{font-size:113px;letter-spacing:-0.01em;}.cls-2,.cls-3,.cls-4{fill:#7975b7;font-family:BungeeInline-Regular, Bungee Inline;}.cls-3{font-size:22.23px;stroke:#7975b7;stroke-width:0.75px;}.cls-4{font-size:101.64px;}"}</style>
         </defs>
         <g id="Layer_2" data-name="Layer 2">
             <g id="Layer_1-2" data-name="Layer 1">

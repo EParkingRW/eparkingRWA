@@ -1,6 +1,7 @@
 import { getLayout } from '@/layouts/dashboard';
-
-const DashboardIndex = () => <div>this is dashboard page</div>;
+import {Dashboard} from "../components/screens/Dashboard";
+import React from "react";
+const DashboardIndex = () => <Dashboard/>;
 
 DashboardIndex.getLayout = getLayout;
 

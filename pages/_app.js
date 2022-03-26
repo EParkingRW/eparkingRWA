@@ -4,6 +4,7 @@ import Nprogress from '@/components/nprogress';
 import theme from '@/components/design-system';
 import DefaultLayout from '@/layouts/default';
 
+
 const App = ({ Component, pageProps }) => {
   const getLayout =
     Component.getLayout || ((page) => <DefaultLayout children={page} />);

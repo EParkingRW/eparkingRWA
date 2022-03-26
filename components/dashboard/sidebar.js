@@ -82,19 +82,19 @@ export default function Sidebar(props) {
 
   return (
     <SidebarContainer bg={bgColor}>
-      <Flex w="full" align="center" h={16} p={3}>
+      <Flex w="full" align="center" h={85} p={3}>
         <Flex boxSize="full" align="center" px={3}>
           <Flex boxSize="full" align="center">
             <Box
               as={Logov1}
-              h={8}
+              h={80}
               w="auto"
               display={{ base: 'block', lg: 'none' }}
             />
 
             <Box
               as={Logov1}
-              h={8}
+              h={80}
               w="auto"
               display={{ base: 'none', lg: 'block' }}
             />
