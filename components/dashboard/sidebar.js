@@ -41,22 +41,19 @@ function PageLinks() {
       <SidebarLink href="/dashboard" icon={Home}>
         Dashboard
       </SidebarLink>
-      <SidebarLink href="/dashboard/team" icon={UserGroup}>
+      <SidebarLink href="/dashboard/entrance" icon={UserGroup}>
         Entrance gate
       </SidebarLink>
-      <SidebarLink href="/dashboard/projects" icon={Folder}>
+      <SidebarLink href="/dashboard/exit" icon={Folder}>
         Exit gate
       </SidebarLink>
-      <SidebarLink href="/dashboard/calendar" icon={Calendar}>
+      <SidebarLink href="/dashboard/parkingspace" icon={Calendar}>
         Parking Space
-      </SidebarLink>
-      <SidebarLink href="/dashboard/documents" icon={Inbox}>
-        Documents
       </SidebarLink>
       <SidebarLink href="/dashboard/reports" icon={ChartSquareBar}>
         Reports
       </SidebarLink>
-        <SidebarLink href="/dashboard/Settings" icon={Menu}>
+        <SidebarLink href="/dashboard/settings" icon={Menu}>
             Settings
         </SidebarLink>
     </VStack>
