@@ -1,9 +1,21 @@
 import classes from './ClientsCSS.module.css';
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect} from "react";
 import {Image} from "@chakra-ui/core";
+import io from 'socket.io-client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner, faFilter, faEllipsisV,faSortAmountDesc } from '@fortawesome/free-solid-svg-icons'
 const Clients = () => {
+   
+    useEffect(() => {
+        const socket = io("https://smartiparking.herokuapp.com");
+        socket.on("connection", () => console.log("connected"));
+        socket.on("desconnecting", () => console.log("desconnecing"));
+        socket.on("data", (data) => {
+            console.log(data);
+        });
+
+        
+    },[])
     const clientSampleObject = [
         {
             image:"https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png",
