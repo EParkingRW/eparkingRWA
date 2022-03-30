@@ -7,9 +7,9 @@ import { faSpinner, faFilter, faEllipsisV,faSortAmountDesc } from '@fortawesome/
 const Clients = () => {
    
     useEffect(() => {
-        const socket = io("https://smartiparking.herokuapp.com");
+        const socket = io("http://localhost:2022");
         socket.on("connection", () => console.log("connected"));
-        socket.on("desconnecting", () => console.log("desconnecing"));
+        socket.on("disconnect", () => console.log("desconnected"));
         socket.on("data", (data) => {
             console.log(data);
         });
