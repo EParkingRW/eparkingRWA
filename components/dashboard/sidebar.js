@@ -1,14 +1,14 @@
 import {
-  Box,
-  Flex,
-  Text,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  VStack,
-  useColorModeValue
+    Box,
+    Flex,
+    Text,
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+    VStack,
+    useColorModeValue, Image
 } from '@chakra-ui/core';
 import { NavLink } from './nav-link';
 import {
@@ -23,6 +23,8 @@ import {
   Template,Logov1,
   ClipboardList,Menu
 } from '../icons';
+import React from "react";
+
 
 const SidebarLink = ({ href, children, icon }) => (
   <NavLink href={href}>
@@ -77,24 +79,17 @@ function SidebarContainer(props) {
 export default function Sidebar(props) {
   const bgColor = useColorModeValue('white', 'gray.800');
 
+
   return (
     <SidebarContainer bg={bgColor}>
-      <Flex w="full" align="center" h={85} p={3}>
+      <Flex w="full" align="center" h={70} p={3}>
         <Flex boxSize="full" align="center" px={3}>
           <Flex boxSize="full" align="center">
-            <Box
-              as={Logov1}
-              h={80}
-              w="auto"
-              display={{ base: 'block', lg: 'none' }}
-            />
+              <Image src={"/logo.svg"} alt={""}
+                     h={70}
+                     w={"auto"}
+              />
 
-            <Box
-              as={Logov1}
-              h={80}
-              w="auto"
-              display={{ base: 'none', lg: 'block' }}
-            />
           </Flex>
         </Flex>
       </Flex>

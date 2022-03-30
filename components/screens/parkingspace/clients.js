@@ -1,7 +1,7 @@
 import classes from './ClientsCSS.module.css';
 import React, {Fragment, useEffect} from "react";
-import {Image} from "@chakra-ui/core";
 import io from 'socket.io-client';
+import {Image, Select} from "@chakra-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner, faFilter, faEllipsisV,faSortAmountDesc } from '@fortawesome/free-solid-svg-icons'
 const Clients = () => {
@@ -61,13 +61,14 @@ const Clients = () => {
                 <div className="row">
                     <div className="col-md-6 text-nowrap">
                         <div id="dataTable_length" className="dataTables_length" aria-controls="dataTable"><label
-                            className="form-label">Show&nbsp;<select
+                            className="form-label">Show&nbsp;
+                            <Select placeholder={"10"}
                             className="d-inline-block form-select form-select-sm">
-                            <option value="10" selected="">10</option>
+                            <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
                             <option value="100">100</option>
-                        </select>&nbsp;</label></div>
+                        </Select>&nbsp;</label></div>
                     </div>
                     <div className="col-md-6">
                         <div className="text-md-end dataTables_filter" id="dataTable_filter">
