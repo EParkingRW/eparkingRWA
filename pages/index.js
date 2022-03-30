@@ -39,6 +39,6 @@ const LoginPage = () => {
     return <Login/>
 }
 
-LoginPage.getLayout = getLayout;
+Home.getLayout = getLayout;
 
-export default LoginPage;
+export default Home;

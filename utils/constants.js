@@ -3,7 +3,7 @@ import { Github, Twitter, Mail } from '../components/icons';
 export const MY_APP = 'Eparking';
 export const MY_NAME = 'Faisal Karim';
 export const TWITTER_USER_NAME = 'eparkingRW';
-export const PLATFORM_URL = 'https://dumbbell.now.sh';
+export const PLATFORM_URL = '';
 
 export const links = [
   [Twitter, 'https://twitter.com/paternen', 'Twitter'],
