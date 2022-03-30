@@ -85,7 +85,7 @@ export default function Sidebar(props) {
       <Flex w="full" align="center" h={70} p={3}>
         <Flex boxSize="full" align="center" px={3}>
           <Flex boxSize="full" align="center">
-              <Image src={"/eparkinglogo.svg"} alt={""}
+              <Image src={"/logo.svg"} alt={""}
                      h={70}
                      w={"auto"}
               />
