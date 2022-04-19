@@ -1,6 +1,8 @@
 import { getLayout } from '@/layouts/dashboard';
+import {Entrance} from "@/components/screens/entrance";
+import {Fragment} from "react";
 
-const DashboardDocuments = () => <div>Entrance</div>;
+const DashboardDocuments = () =><Fragment> <Entrance/></Fragment>;
 
 DashboardDocuments.getLayout = getLayout;
 
