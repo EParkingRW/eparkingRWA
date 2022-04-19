@@ -1,6 +1,7 @@
 import { getLayout } from '@/layouts/dashboard';
+import {ExitGate} from "@/components/screens/exit";
 
-const DashboardDocuments = () => <div>Exit</div>;
+const DashboardDocuments = () => <ExitGate/>;
 
 DashboardDocuments.getLayout = getLayout;
 
