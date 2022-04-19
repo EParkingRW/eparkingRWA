@@ -72,6 +72,7 @@ export default function Entrance(){
                             <div className={"row "+classes.carAtGateImageRow}>
                                 <div className="col d-flex justify-content-xl-center">
                                     <picture><Image className={classes.carAtGateImage}
+                                                    fallbackSrc={"/fallback1.svg"}
                                                   src="https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png"/></picture>
                                 </div>
                             </div>

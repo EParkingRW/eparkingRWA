@@ -39,7 +39,7 @@ export default function ExitGate(){
                                         </div>
                                     </div>
                                     <div className="row w-100">
-                                        <div className="col w-100"><Image className={classes.carAtGateImage}
+                                        <div className="col w-100"><Image className={classes.carAtGateImage} fallbackSrc={"/fallback1.svg"}
                                             src="https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png"/></div>
                                     </div>
                                     <h1 className={classes.payByText}>Pay
