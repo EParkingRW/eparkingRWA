@@ -1,27 +1,34 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Image} from "@chakra-ui/core";
 import classes from "./Css.module.css"
 import StateContext from "@/components/context/StateContext";
+import useColorMode from "@/utils/color-mode";
 export default function Wallet (){
+    const {newColorMode } = useColorMode();
+    const [isLight, setLight] = useState(() =>newColorMode==='light');
     const pageTitle = "Wallet";
     const {setPageTitle} = useContext(StateContext);
 
     useEffect(() => {
         setPageTitle(pageTitle);
     },)
+
+    useEffect(() => {
+        setLight(newColorMode==="light")
+    },[newColorMode])
     return(
         <div>
-            <div className={"container-fluid pt-5 card "+classes.withdrawContainer}>
+            <div className={"container-fluid pt-5 d-flex"+classes.withdrawContainer}>
                 <div className="row">
                     <div className="col-md-6 d-flex justify-content-lg-center align-items-lg-center">
                         <div>
-                            <h1 className={classes.moneyTransfer}>Online Money Transfer</h1>
+                            <h1 className={classes.moneyTransfer +" "+(isLight?" text-light ":" text-dark ")}>Online Money Transfer</h1>
                             <div className={classes.moneyCard}>
-                                <h3 className={"text-center "+classes.balance}>your balance is</h3>
-                                <p className={"text-center "+classes.balanceP}>300, 000 RWF</p>
+                                <h3 className={"text-center "+classes.balance+" "+(isLight?" text-light ":" text-dark ")}>your balance is</h3>
+                                <p className={"text-center "+classes.balanceP+" "+(isLight?" text-light ":" text-dark ")}>300, 000 RWF</p>
                                 <div
                                     className="d-flex justify-content-center align-items-center justify-content-md-center">
-                                    <button className={"btn "+classes.withdrawBtn} type="button">Withdraw</button>
+                                    <button className={"btn "+classes.withdrawBtn+" "+(isLight?" text-light ":" text-dark ")} type="button">Withdraw</button>
                                 </div>
                             </div>
                         </div>

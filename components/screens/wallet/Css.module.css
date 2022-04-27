@@ -1,15 +1,14 @@
 .balanceP {
     padding-top: 6px;
-    color: white;
+    color: black;
     font-size: 20px;
 }
 
 .balance {
     margin-top: 40px;
-    color: white;
+    color: black;
 }
 .moneyTransfer{
-    color: white;
     font-size: 34px;
 }
 .moneyCard {
@@ -21,7 +20,7 @@
 
 .withdrawBtn {
     display: inline-block;
-    color: white;
+    color: black;
     text-decoration: none;
     padding: 20px 50px;
     border: 3px solid #3c67e3;
@@ -34,7 +33,7 @@
 
 .withdrawBtn:hover {
     background-color: var(--bs-purple);
-    color: white;
+    color: black;
     animation: pulsate 1s ease-in-out;
 }
 
@@ -68,7 +67,9 @@
 }
 
 .withdrawContainer {
-    background: url("background.svg") no-repeat;
+    /*background: url("background.svg") no-repeat;*/
     background-size: cover;
+    min-height: 410px;
+    z-index: 100000;
 }
 
