@@ -1,10 +1,16 @@
 import classes from './ClientsCSS.module.css';
-import React, {Fragment, useEffect} from "react";
+import React, {Fragment, useContext, useEffect} from "react";
 import io from 'socket.io-client';
 import {Image, Select} from "@chakra-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner, faFilter, faEllipsisV,faSortAmountDesc } from '@fortawesome/free-solid-svg-icons'
+import StateContext from "@/components/context/StateContext";
 const Clients = () => {
+    const {setPageTitle} = useContext(StateContext);
+    const pageTitle = "Parking space";
+    useEffect(() => {
+        setPageTitle(pageTitle);
+    },)
    
     useEffect(() => {
         const socket = io("http://localhost:2022");

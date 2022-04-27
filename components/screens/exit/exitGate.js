@@ -1,8 +1,15 @@
 import classes from "./ExitCss.module.css";
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import {Image} from "@chakra-ui/core";
+import StateContext from "@/components/context/StateContext";
 
 export default function ExitGate(){
+    const pageTitle = "Exit Gate";
+    const {setPageTitle} = useContext(StateContext);
+
+    useEffect(() => {
+        setPageTitle(pageTitle);
+    },)
     return(
         <div className={"container "+classes.containerMain}>
             <div className="row d-flex flex-row justify-content-lg-center align-items-lg-center">

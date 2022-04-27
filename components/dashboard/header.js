@@ -3,8 +3,11 @@ import { Button, Flex, useColorModeValue } from '@chakra-ui/core';
 import ThemeToggle from '../theme-toggle';
 import MobileNav from './mobile-nav';
 import { MY_APP } from '@/utils/constants';
+import {useContext} from "react";
+import StateContext from "@/components/context/StateContext";
 
 export default function Header() {
+  const {pageTitle} = useContext(StateContext);
   const bgColor = useColorModeValue('white', 'gray.800');
 
   return (
@@ -25,7 +28,7 @@ export default function Header() {
           <Flex align="center">
             <NextLink href="/dashboard" passHref>
               <Button as="a" variant="ghost" px={0} fontWeight="bold">
-                {MY_APP}
+                {pageTitle}
               </Button>
             </NextLink>
           </Flex>
