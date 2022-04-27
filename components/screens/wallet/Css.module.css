@@ -8,7 +8,10 @@
     margin-top: 40px;
     color: white;
 }
-
+.moneyTransfer{
+    color: white;
+    font-size: 34px;
+}
 .moneyCard {
     transition: box-shadow .25s ease-in;
     border-radius: 4px;

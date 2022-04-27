@@ -11,11 +11,11 @@ export default function Wallet (){
     },)
     return(
         <div>
-            <div className={"container-fluid pt-5 "+classes.withdrawContainer}>
+            <div className={"container-fluid pt-5 card "+classes.withdrawContainer}>
                 <div className="row">
                     <div className="col-md-6 d-flex justify-content-lg-center align-items-lg-center">
                         <div>
-                            <h1 className={classes.balance}>Online Money Transfer</h1>
+                            <h1 className={classes.moneyTransfer}>Online Money Transfer</h1>
                             <div className={classes.moneyCard}>
                                 <h3 className={"text-center "+classes.balance}>your balance is</h3>
                                 <p className={"text-center "+classes.balanceP}>300, 000 RWF</p>
