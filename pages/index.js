@@ -1,7 +1,7 @@
 import { Flex, Heading, Text, Button, Stack } from '@chakra-ui/core';
 import { getLayout } from '@/layouts/default';
 import { MY_APP } from '@/utils/constants';
-import {Login} from "@/components/screens/login";
+
 
 const Home = () => {
   return (
@@ -18,7 +18,7 @@ const Home = () => {
 
       <Button
         as="a"
-        href="/dashboard"
+        href="/login"
         backgroundColor="gray.900"
         color="white"
         fontWeight="medium"
@@ -30,14 +30,12 @@ const Home = () => {
           transform: 'scale(0.95)'
         }}
       >
-        View Dashboard
+        Login
       </Button>
     </Flex>
   );
 };
-const LoginPage = () => {
-    return <Login/>
-}
+
 
 Home.getLayout = getLayout;
 
