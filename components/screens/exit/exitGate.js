@@ -36,8 +36,8 @@ export default function ExitGate(){
             <div className={"row "+classes.carAtGateRow}>
                 <div className="col">
                     <h1 className={ classes.carAtGateText}>Car at gate</h1>
-                    <div className="card">
-                        <div className="card-body">
+                    <div className={classes.carAtGateCardBody}>
+                        <div className="p-3 ">
                             <div className="row">
                                 <div className="col-sm-12 col-md-12 col-lg-6">
                                     <div className="row">

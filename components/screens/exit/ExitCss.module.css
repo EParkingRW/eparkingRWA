@@ -1,5 +1,5 @@
 .containerMain {
-    background: #F7F8FC;
+    /*background: #F7F8FC;*/
 }
 
 .mainCol {
@@ -106,7 +106,7 @@
 .entranceTimeCardBody {
     border-radius: 5px;
     height: 124.797px;
-    background: #F7F8FC;
+    /*background: #F7F8FC;*/
 }
 
 .entranceTimeText {
@@ -182,4 +182,7 @@
     font-weight: bold;
     font-family: mul;
     color: #252733;
+}
+.carAtGateCardBody{
+    border: 1px solid black;
 }

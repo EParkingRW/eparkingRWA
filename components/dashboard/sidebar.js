@@ -2,11 +2,6 @@ import {
     Box,
     Flex,
     Text,
-    Accordion,
-    AccordionItem,
-    AccordionButton,
-    AccordionPanel,
-    AccordionIcon,
     VStack,
     useColorModeValue, Image
 } from '@chakra-ui/core';
@@ -16,12 +11,8 @@ import {
   UserGroup,
   Folder,
   Calendar,
-  Inbox,
   ChartSquareBar,
-  LogoMark,
-  LogoOnDark,
-  Template,Logov1,
-  ClipboardList,Menu
+  Menu
 } from '../icons';
 import React from "react";
 
