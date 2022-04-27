@@ -1,6 +1,6 @@
 import {Image, Button} from "@chakra-ui/core";
 import classes from "./Css.module.css";
-import React from "react";
+
 
 export default function Login(){
     return(

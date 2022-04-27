@@ -106,11 +106,11 @@ const Clients = () => {
                     <table className="table my-0" id="dataTable">
                         <thead>
                         <tr>
-                            <th className={isLight?classes.light:classes.dark}>plate number</th>
-                            <th className={isLight?classes.light:classes.dark}>Entrance time</th>
-                            <th className={isLight?classes.light:classes.dark}>Total min</th>
-                            <th className={isLight?classes.light:classes.dark}>Money</th>
-                            <th className={isLight?classes.light:classes.dark}></th>
+                            <th className={isLight?classes.light:""}>plate number</th>
+                            <th className={isLight?classes.light:""}>Entrance time</th>
+                            <th className={isLight?classes.light:""}>Total min</th>
+                            <th className={isLight?classes.light:""}>Money</th>
+                            <th className={isLight?classes.light:""}></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -124,11 +124,11 @@ const Clients = () => {
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td className={isLight?classes.light:classes.dark}><strong>plate number</strong></td>
-                            <td className={isLight?classes.light:classes.dark}><strong>Entrance time</strong></td>
-                            <td className={isLight?classes.light:classes.dark}><strong>Total min</strong></td>
-                            <td className={isLight?classes.light:classes.dark}><strong>Money</strong></td>
-                            <td className={isLight?classes.light:classes.dark}><strong></strong></td>
+                            <td className={isLight?classes.light:""}><strong>plate number</strong></td>
+                            <td className={isLight?classes.light:""}><strong>Entrance time</strong></td>
+                            <td className={isLight?classes.light:""}><strong>Total min</strong></td>
+                            <td className={isLight?classes.light:""}><strong>Money</strong></td>
+                            <td className={isLight?classes.light:""}><strong></strong></td>
                         </tr>
                         </tfoot>
                     </table>

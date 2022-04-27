@@ -14,7 +14,8 @@ import {
   ChartSquareBar,
   Menu
 } from '../icons';
-import React from "react";
+import React, {useContext, useState} from "react";
+import userContext from "@/components/context/UserContext";
 
 
 const SidebarLink = ({ href, children, icon }) => (
@@ -28,7 +29,18 @@ const SidebarLink = ({ href, children, icon }) => (
   </NavLink>
 );
 
-function PageLinks() {
+function PageLinks({user}) {
+    console.log("user data " + user)
+    let otherNav = [];
+    if(user?.role ==="manager"){
+        otherNav.push(
+            <SidebarLink key={user.role +"keyIsNeeded"} href="/dashboard/wallet" icon={Menu}>
+                wallet
+            </SidebarLink>
+        )
+    }
+
+
   return (
     <VStack w="full" spacing={1}>
       <SidebarLink href="/dashboard" icon={Home}>
@@ -49,6 +61,7 @@ function PageLinks() {
         <SidebarLink href="/dashboard/settings" icon={Menu}>
             Settings
         </SidebarLink>
+        {otherNav}
     </VStack>
   );
 }
@@ -68,6 +81,7 @@ function SidebarContainer(props) {
 }
 
 export default function Sidebar(props) {
+    const {user} = useContext(userContext);
   const bgColor = useColorModeValue('white', 'gray.800');
 
 
@@ -93,7 +107,7 @@ export default function Sidebar(props) {
         overflowY="auto"
         {...props}
       >
-        <PageLinks />
+        <PageLinks user={user} />
       </VStack>
     </SidebarContainer>
   );
