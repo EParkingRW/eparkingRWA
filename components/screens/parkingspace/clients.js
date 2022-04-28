@@ -9,7 +9,7 @@ const Clients = () => {
     useEffect(() => {
         const socket = io("http://localhost:2022");
         socket.on("connection", () => console.log("connected"));
-        socket.on("disconnect", () => console.log("desconnected"));
+        socket.on("disconnect", () => console.log("disconnected"));
         socket.on("data", (data) => {
             console.log(data);
         });
