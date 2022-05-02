@@ -1,8 +1,15 @@
 import classes from "./ExitCss.module.css";
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import {Image} from "@chakra-ui/core";
+import StateContext from "@/components/context/StateContext";
 
 export default function ExitGate(){
+    const pageTitle = "Exit Gate";
+    const {setPageTitle} = useContext(StateContext);
+
+    useEffect(() => {
+        setPageTitle(pageTitle);
+    },)
     return(
         <div className={"container "+classes.containerMain}>
             <div className="row d-flex flex-row justify-content-lg-center align-items-lg-center">
@@ -29,8 +36,8 @@ export default function ExitGate(){
             <div className={"row "+classes.carAtGateRow}>
                 <div className="col">
                     <h1 className={ classes.carAtGateText}>Car at gate</h1>
-                    <div className="card">
-                        <div className="card-body">
+                    <div className={classes.carAtGateCardBody}>
+                        <div className="p-3 ">
                             <div className="row">
                                 <div className="col-sm-12 col-md-12 col-lg-6">
                                     <div className="row">
@@ -39,7 +46,7 @@ export default function ExitGate(){
                                         </div>
                                     </div>
                                     <div className="row w-100">
-                                        <div className="col w-100"><Image className={classes.carAtGateImage}
+                                        <div className="col w-100"><Image className={classes.carAtGateImage} fallbackSrc={"/fallback1.svg"}
                                             src="https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png"/></div>
                                     </div>
                                     <h1 className={classes.payByText}>Pay

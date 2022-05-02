@@ -1,7 +1,7 @@
 import { Github, Twitter, Mail } from '../components/icons';
 
 export const MY_APP = 'Eparking';
-export const MY_NAME = 'Faisal Karim';
+export const MY_NAME = 'p p';
 export const TWITTER_USER_NAME = 'eparkingRW';
 export const PLATFORM_URL = '';
 

@@ -1,7 +1,13 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
 import {Image} from "@chakra-ui/core";
 import classes from "./EntranceCss.module.css"
+import StateContext from "@/components/context/StateContext";
 export default function Entrance(){
+    const {setPageTitle} = useContext(StateContext);
+    const pageTitle = "Entrance";
+    useEffect(() => {
+        setPageTitle(pageTitle);
+    },)
     return (
         <div className={"container " + classes.containerCustom}>
             <div className="row">
@@ -72,6 +78,7 @@ export default function Entrance(){
                             <div className={"row "+classes.carAtGateImageRow}>
                                 <div className="col d-flex justify-content-xl-center">
                                     <picture><Image className={classes.carAtGateImage}
+                                                    fallbackSrc={"/fallback1.svg"}
                                                   src="https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png"/></picture>
                                 </div>
                             </div>

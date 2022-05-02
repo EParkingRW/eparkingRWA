@@ -1,11 +1,24 @@
 import classes from './ClientsCSS.module.css';
-import React, {Fragment, useEffect} from "react";
+import React, {Fragment, useContext, useEffect, useState} from "react";
 import io from 'socket.io-client';
 import {Image, Select} from "@chakra-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner, faFilter, faEllipsisV,faSortAmountDesc } from '@fortawesome/free-solid-svg-icons'
+import StateContext from "@/components/context/StateContext";
+import useColorMode from "@/utils/color-mode";
 const Clients = () => {
-   
+
+    const {newColorMode } = useColorMode();
+
+    const {setPageTitle} = useContext(StateContext);
+    const [isLight, setLight] = useState(() =>newColorMode==='light');
+    const pageTitle = "Parking space";
+    useEffect(() => {
+        setPageTitle(pageTitle);
+    })
+    useEffect(() => {
+        setLight(newColorMode==="light")
+    },[newColorMode])
     useEffect(() => {
         const socket = io("http://localhost:2022");
         socket.on("connection", () => console.log("connected"));
@@ -53,7 +66,7 @@ const Clients = () => {
     ]
 
     return (
-        <div className="card shadow">
+        <div className="shadow">
             <div className="card-header py-3">
                 <p className="text-primary m-0 fw-bold">all Clients</p>
             </div>
@@ -77,23 +90,27 @@ const Clients = () => {
                                     <div className="col-6 col-lg-8"><label className="col-form-label"><input
                                         type="search" className="form-control form-control-sm" aria-controls="dataTable"
                                         placeholder="Search"/></label></div>
-                                    <div className="col-6 col-sm-6 col-md-6 col-lg-4"><span>
-                                        <FontAwesomeIcon icon={faSortAmountDesc} color={"black"}/>Sort</span><span className={classes.sort}><FontAwesomeIcon icon={faFilter} color={"black"}/>Filter</span></div>
+                                    <div className="col-6 col-sm-6 col-md-6 col-lg-4">
+                                    {/*    <span>*/}
+                                    {/*    <FontAwesomeIcon icon={faSortAmountDesc} color={"black"}/>Sort</span><span className={classes.sort}>*/}
+                                    {/*    <FontAwesomeIcon icon={faFilter} color={"black"}/>Filter*/}
+                                    {/*</span>*/}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="table-responsive table mt-2" id="dataTable-1" role="grid"
+                <div className="table-responsive mt-2" id="dataTable-1" role="grid"
                      aria-describedby="dataTable_info">
                     <table className="table my-0" id="dataTable">
                         <thead>
                         <tr>
-                            <th>plate number</th>
-                            <th>Entrance time</th>
-                            <th>Total min</th>
-                            <th>Money</th>
-                            <th></th>
+                            <th className={isLight?classes.light:""}>plate number</th>
+                            <th className={isLight?classes.light:""}>Entrance time</th>
+                            <th className={isLight?classes.light:""}>Total min</th>
+                            <th className={isLight?classes.light:""}>Money</th>
+                            <th className={isLight?classes.light:""}></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -107,11 +124,11 @@ const Clients = () => {
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td><strong>plate number</strong></td>
-                            <td><strong>Entrance time</strong></td>
-                            <td><strong>Total min</strong></td>
-                            <td><strong>Money</strong></td>
-                            <td><strong></strong></td>
+                            <td className={isLight?classes.light:""}><strong>plate number</strong></td>
+                            <td className={isLight?classes.light:""}><strong>Entrance time</strong></td>
+                            <td className={isLight?classes.light:""}><strong>Total min</strong></td>
+                            <td className={isLight?classes.light:""}><strong>Money</strong></td>
+                            <td className={isLight?classes.light:""}><strong></strong></td>
                         </tr>
                         </tfoot>
                     </table>

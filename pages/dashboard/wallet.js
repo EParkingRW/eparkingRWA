@@ -1,8 +1,8 @@
 import { getLayout } from '@/layouts/dashboard';
-import {Settings} from "@/components/screens/settings";
+import {Wallet} from "@/components/screens/wallet";
 import React from "react";
 
-const DashboardDocuments = () => <Settings/>;
+const DashboardDocuments = () => <Wallet/>;
 
 DashboardDocuments.getLayout = getLayout;
 
