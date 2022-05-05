@@ -20,7 +20,7 @@ const Clients = () => {
         setLight(newColorMode==="light")
     },[newColorMode])
     useEffect(() => {
-        const socket = io("http://localhost:2022");
+        const socket = io("http://localhost:2023");
         socket.on("connection", () => console.log("connected"));
         socket.on("disconnect", () => console.log("disconnected"));
         socket.on("data", (data) => {
