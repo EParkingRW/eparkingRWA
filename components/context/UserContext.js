@@ -4,7 +4,7 @@ import config from "@/config";
 const UserContext = createContext();
 export default UserContext;
 function handleLogin({login,password}){
-    fetch("http://localhost:2023/api/v1/auth/login", {
+    fetch(config.backendURL+"/api/v1/auth/login", {
         method: 'POST',
         body: JSON.stringify({
             login,
@@ -26,7 +26,7 @@ function handleLogin({login,password}){
 }
 function handleSignUp({email,name, phone}){
     console.log(email+" "+ name +" " +phone)
-    fetch("http://localhost:2023/api/v1/auth/signup", {
+    fetch(config.backendURL+"/api/v1/auth/signup", {
         method: 'POST',
         body: JSON.stringify({
             email,

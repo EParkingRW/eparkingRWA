@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner, faFilter, faEllipsisV,faSortAmountDesc } from '@fortawesome/free-solid-svg-icons'
 import StateContext from "@/components/context/StateContext";
 import useColorMode from "@/utils/color-mode";
+import config from "@/config";
+
 const Clients = () => {
 
     const {newColorMode } = useColorMode();
@@ -20,7 +22,7 @@ const Clients = () => {
         setLight(newColorMode==="light")
     },[newColorMode])
     useEffect(() => {
-        const socket = io("http://localhost:2023");
+        const socket = io(config.backendURL);
         socket.on("connection", () => console.log("connected"));
         socket.on("disconnect", () => console.log("disconnected"));
         socket.on("data", (data) => {
