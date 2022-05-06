@@ -48,9 +48,10 @@ export default function Wallet (){
                                 <div className="row">
                                     <div className="col-md-6 text-nowrap">
                                         <div id="dataTable_length" className="dataTables_length"
-                                             aria-controls="dataTable"><label className="form-label">Show&nbsp;<select
+                                             aria-controls="dataTable"><label className="form-label">Show&nbsp;
+                                            <select defaultValue={"10"}
                                             className="d-inline-block form-select form-select-sm">
-                                            <option value="10" selected="">10</option>
+                                            <option value="10">10</option>
                                             <option value="25">25</option>
                                             <option value="50">50</option>
                                             <option value="100">100</option>

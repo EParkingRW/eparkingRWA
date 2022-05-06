@@ -10,7 +10,7 @@ export default function Login(){
     const password = useRef();
 
     const handleSubmit = () =>{
-        handleLogin({"login":login.current.value, "password": password.current.value});
+        handleLogin({login:login.current.value, password: password.current.value});
     }
     return(
         <div className={"container-fluid "}
@@ -21,11 +21,12 @@ export default function Login(){
                         <h1 className={classes.head} id="head">Login</h1>
                         <div><Image className={"rounded img-fluid "+classes.image }id="image" alt={""}
                                   src="logo.svg"/></div>
-                        <div className="form-group mb-3"><input className={"form-control "+classes.formum} type="email" id="formum"
+                        <div className="form-group mb-3"><input ref={login} className={"form-control "+classes.formum} type="email" id="formum"
                                                                 placeholder="Email"/></div>
-                        <div className="form-group mb-3"><input className={"form-control "+classes.formum2} type="password" id="formum2"
+                        <div className="form-group mb-3"><input ref={password} className={"form-control "+classes.formum2} type="password" id="formum2"
                                                                 placeholder="Password"/></div>
                         <Button
+                            onClick={() => handleSubmit()}
                             as="a"
                             href="/dashboard"
                             fontWeight="medium"
