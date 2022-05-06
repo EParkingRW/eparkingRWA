@@ -1,15 +1,15 @@
 import {Image, Button} from "@chakra-ui/core";
 import classes from "./Css.module.css";
 import {useRef, useContext} from "react";
-import userContext from "@/components/context/UserContext";
+import UserContext from "@/components/context/UserContext";
 
 export default function Signup(){
-    const {handleSignUp} = useContext(userContext);
+    const {handleSignUp} = useContext(UserContext);
     const email = useRef();
     const name = useRef();
     const phone = useRef();
     const handleSubmit = () => {
-        handleSignUp({email:email.current.value,username:name.current.value,phone:phone.current.value});
+        handleSignUp({email:email.current.value,name:name.current.value,phone:phone.current.value});
     }
     return(
         <div className={"container-fluid "}

@@ -1,8 +1,17 @@
 import {Image, Button} from "@chakra-ui/core";
 import classes from "./Css.module.css";
+import {useContext, useRef} from "react";
+import UserContext from "@/components/context/UserContext";
 
 
 export default function Login(){
+    const {handleLogin} = useContext(UserContext)
+    const login = useRef();
+    const password = useRef();
+
+    const handleSubmit = () =>{
+        handleLogin({"login":login.current.value, "password": password.current.value});
+    }
     return(
         <div className={"container-fluid "}
         >
