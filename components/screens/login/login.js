@@ -1,6 +1,6 @@
 import {Image, Button} from "@chakra-ui/core";
 import classes from "./Css.module.css";
-import {useContext, useRef} from "react";
+import {useContext, useRef, useState} from "react";
 import UserContext from "@/components/context/UserContext";
 
 
@@ -8,6 +8,7 @@ export default function Login(){
     const {handleLogin} = useContext(UserContext)
     const login = useRef();
     const password = useRef();
+    const [forgetPass, setForgetPass] = useState(false);
 
     const handleSubmit = () =>{
         handleLogin({login:login.current.value, password: password.current.value});
@@ -23,21 +24,41 @@ export default function Login(){
                                   src="logo.svg"/></div>
                         <div className="form-group mb-3"><input ref={login} className={"form-control "+classes.formum} type="email" id="formum"
                                                                 placeholder="Email"/></div>
-                        <div className="form-group mb-3"><input ref={password} className={"form-control "+classes.formum2} type="password" id="formum2"
-                                                                placeholder="Password"/></div>
-                        <Button
-                            onClick={() => handleSubmit()}
-                            as="a"
-                            href="/dashboard"
-                            fontWeight="medium"
-                            colorScheme='blue' variant='outline'
-                            mt={4}
-                            maxW="200px"
+                        {
+                            forgetPass?"":(<div className="form-group mb-3"><input ref={password} className={"form-control "+classes.formum2} type="password" id="formum2"
+                                                                                   placeholder="Password"/></div>)
+                        }
+                        {
+                            forgetPass?(<Button
+                                onClick={() => {}}
+                                as="a"
+                                fontWeight="medium"
+                                colorScheme='blue' variant='outline'
+                                mt={4}
+                                maxW="200px"
 
-                        >
-                            Login
-                        </Button>
-                        <a id="linkas" className={classes.linkas} href="#">Forgot your e mail or password?</a>
+                            >
+                                send Recover Email
+                            </Button>)
+                                :
+                                (<Button
+                                onClick={() => handleSubmit()}
+                                as="a"
+                                href="/dashboard"
+                                fontWeight="medium"
+                                colorScheme='blue' variant='outline'
+                                mt={4}
+                                maxW="200px"
+
+                            >
+                                Login
+                            </Button>)
+                        }
+                        {
+                            forgetPass?(
+                                <a onClick={(event) => {event.preventDefault(); setForgetPass(false)}} id="linkas" className={classes.linkas}>back to login</a>
+                            ):(<a onClick={(event) => {event.preventDefault(); setForgetPass(true)}} id="linkasf" className={classes.linkas} href="#">Forgot your e mail or password?</a>)
+                        }
                     </form>
                 </div>
             </div>
