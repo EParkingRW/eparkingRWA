@@ -21,16 +21,6 @@ const Clients = () => {
     useEffect(() => {
         setLight(newColorMode==="light")
     },[newColorMode])
-    useEffect(() => {
-        const socket = io(config.backendURL);
-        socket.on("connection", () => console.log("connected"));
-        socket.on("disconnect", () => console.log("disconnected"));
-        socket.on("data", (data) => {
-            console.log(data);
-        });
-
-        
-    },[])
     const clientSampleObject = [
         {
             image:"https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png",
