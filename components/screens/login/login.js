@@ -1,17 +1,42 @@
 import {Image, Button} from "@chakra-ui/core";
 import classes from "./Css.module.css";
-import {useContext, useRef, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
 import UserContext from "@/components/context/UserContext";
+import {Link, Navigate} from "react-router-dom";
+import config from "@/config";
+import Router from "next/router";
 
 
 export default function Login(){
-    const {handleLogin} = useContext(UserContext)
+    const {handleLogin, user} = useContext(UserContext)
     const login = useRef();
     const password = useRef();
     const [forgetPass, setForgetPass] = useState(false);
+    const [messagePart, setMessagePart] = useState(null)
+
+    useEffect(()=>{
+        if(messagePart!==null){
+            setTimeout(() => {
+                setMessagePart(null)
+            },2000)
+        }
+    });
 
     const handleSubmit = () =>{
-        handleLogin({login:login.current.value, password: password.current.value});
+        handleLogin({login:login.current.value, password: password.current.value}).then((response) => {
+            if(response.status === config.status.ERROR){
+                try {
+                    setMessagePart(<div className="alert alert-danger" role="alert">
+                        {response.payload.error.message}
+                    </div>)
+                }catch (e) {
+                    console.log(e)
+                }
+            }
+            else if(response.status === config.status.DONE){
+                Router.push("/dashboard")
+            }
+        });
     }
     return(
         <div className={"container-fluid "}
@@ -19,6 +44,9 @@ export default function Login(){
             <div className="row">
                 <div className="col">
                     <form className={"text-center " + classes.form} id="form">
+                        <div>
+                            {messagePart}
+                        </div>
                         <h1 className={classes.head} id="head">Login</h1>
                         <div><Image className={"rounded img-fluid "+classes.image }id="image" alt={""}
                                   src="logo.svg"/></div>
@@ -44,7 +72,7 @@ export default function Login(){
                                 (<Button
                                 onClick={() => handleSubmit()}
                                 as="a"
-                                href="/dashboard"
+
                                 fontWeight="medium"
                                 colorScheme='blue' variant='outline'
                                 mt={4}
