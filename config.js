@@ -1,6 +1,6 @@
 const settings = {
     backendURLLocal: "http://localhost:2023",
-    backendURLRemote:"https://08ac-105-178-104-154.ngrok.io"
+    backendURLRemote:"https://836a-196-12-156-70.ngrok.io"
 }
 const status = {
     LOADING: 1,
@@ -9,6 +9,6 @@ const status = {
     NOTHING: 4
 };
 export default {
-    backendURL:settings.backendURLLocal,
+    backendURL:settings.backendURLRemote,
     status
 }

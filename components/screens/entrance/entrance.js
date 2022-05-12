@@ -5,11 +5,13 @@ import StateContext from "@/components/context/StateContext";
 import io from "socket.io-client";
 import config from "@/config";
 import EntranceCar from "@/components/screens/entrance/EntranceCar";
+import SocketContext from "@/components/context/socket";
 export default function Entrance(){
     const {setPageTitle} = useContext(StateContext);
     const pageTitle = "Entrance";
     const [entranceCar, setEntranceCar] = useState(null);
     const [elapsedTime, setElapsedTime] = useState(0);
+    const {socket} = useContext(SocketContext);
     useEffect(() => {
         setInterval(function() {
             setElapsedTime((i) => i+1);
@@ -19,7 +21,7 @@ export default function Entrance(){
         setPageTitle(pageTitle);
     },)
     useEffect(() => {
-        const socket = io(config.backendURL);
+        // const socket = io(config.backendURL);
         socket.on("connection", () => console.log("connected"));
         socket.on("disconnect", () => console.log("disconnected"));
         socket.on("data", (data) => {
