@@ -3,6 +3,8 @@ import {Image} from "@chakra-ui/core";
 import PayByMomo from "@/components/screens/exit/PayByMomo";
 import PayByCard from "@/components/screens/exit/PayByCard";
 import React from "react";
+import {convertFromStringToDate} from "@/utils/functions";
+import config from "@/config";
 
 export default function CarAtGate({setShowPayByCash, setShowPayByMomo,showPayByMomo,setShowPayByCard,showPayByCash,
                                       showPayByCard, exitCar}){
@@ -10,6 +12,13 @@ export default function CarAtGate({setShowPayByCash, setShowPayByMomo,showPayByM
         return (<div>no car at gate</div>)
     }
     else {
+        const entranceDate = convertFromStringToDate(exitCar.createdAt);
+        const exitedDate = convertFromStringToDate(exitCar.exitedAt);
+
+        let difference= Math.abs(exitedDate-entranceDate);
+        let min = (difference/(1000 * 60)).toFixed(2)
+        let moneyToPay = Math.round(min*config.paymentRate)
+        moneyToPay = moneyToPay > config.minimumMoneyToPay ? moneyToPay : config.minimumMoneyToPay
         return(
             <div className={"row "+classes.carAtGateRow}>
                 <div className="col">
@@ -96,9 +105,17 @@ export default function CarAtGate({setShowPayByCash, setShowPayByMomo,showPayByM
                                                 <div className={"card-body "+ classes.entranceTimeCardBody}>
                                                     <h4 className={"text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center card-title "+classes.entranceTimeText}>Entrance
                                                         Time</h4>
-                                                    <p className={"text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center card-text "+classes.entranceTimeValue}>3:
-                                                        30 pm</p>
-                                                    <p className={"text-center card-text "+classes.entranceTimeDateValue}>on 24.05.2022</p>
+                                                    <p className={"text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center card-text "+classes.entranceTimeValue}>
+                                                        {
+                                                            entranceDate.getHours()+": "+ entranceDate.getMinutes()
+                                                        }
+                                                        {/*3: 30 pm*/}
+                                                    </p>
+                                                    <p className={"text-center card-text "+classes.entranceTimeDateValue}>{
+                                                        "on "+entranceDate.getDate()+"."+entranceDate.getMonth()+"."+entranceDate.getFullYear()
+                                                    }
+                                                    {/*on 24.05.2022*/}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,8 +126,10 @@ export default function CarAtGate({setShowPayByCash, setShowPayByMomo,showPayByM
                                                 <div className={"card-body "+classes.moneyToPayCardBody}>
                                                     <h4 className={"text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center card-title "+classes.moneyToPayText}>Money
                                                         to pay</h4>
-                                                    <p className={"text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center card-text "+classes.moneyToPayValue}>130,
-                                                        000 rwf</p>
+                                                    <p className={"text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center card-text "+classes.moneyToPayValue}>
+                                                        {moneyToPay +" rwf"}
+                                                        {/*130, 000 rwf*/}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,8 +140,12 @@ export default function CarAtGate({setShowPayByCash, setShowPayByMomo,showPayByM
                                                 <div className={"card-body "+classes.totalTimeCardBody}>
                                                     <h4 className={"text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center card-title "+classes.totalTimeCardText}>Total
                                                         min</h4>
-                                                    <p className={"text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center card-text "+classes.totalTimeCardValue}>120
-                                                        min</p>
+                                                    <p className={"text-center text-sm-center text-md-center text-lg-center text-xl-center text-xxl-center card-text "+classes.totalTimeCardValue}>
+                                                        {
+                                                            min +" min"
+                                                        }
+                                                        {/*120 min*/}
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>

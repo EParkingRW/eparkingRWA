@@ -1,6 +1,6 @@
 const settings = {
     backendURLLocal: "http://localhost:2023",
-    backendURLRemote:"https://836a-196-12-156-70.ngrok.io"
+    backendURLRemote:"https://836a-196-12-156-70.ngrok.io",
 }
 const status = {
     LOADING: 1,
@@ -9,6 +9,8 @@ const status = {
     NOTHING: 4
 };
 export default {
-    backendURL:settings.backendURLRemote,
-    status
+    backendURL:settings.backendURLLocal,
+    status,
+    paymentRate:23,
+    minimumMoneyToPay:300
 }

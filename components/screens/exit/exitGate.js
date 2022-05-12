@@ -8,6 +8,8 @@ import PayByMomo from "@/components/screens/exit/PayByMomo";
 import PayByCard from "@/components/screens/exit/PayByCard";
 import SocketContext from "@/components/context/socket";
 import CarAtGate from "@/components/screens/exit/CarAtGate";
+import {convertFromStringToDate} from "@/utils/functions";
+
 
 export default function ExitGate(){
     const pageTitle = "Exit Gate";
@@ -27,6 +29,9 @@ export default function ExitGate(){
             console.log(data.data);
             setExitCar({...data.data})
         });
+        const date = convertFromStringToDate("2022-05-12T12:30:41.813Z")
+        console.log("date")
+        console.log(date.getDay())
 
 
     },[])
