@@ -1,13 +1,19 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Image} from "@chakra-ui/core";
 import classes from "./EntranceCss.module.css"
 import StateContext from "@/components/context/StateContext";
+import io from "socket.io-client";
+import config from "@/config";
+import EntranceCar from "@/components/screens/entrance/EntranceCar";
+import SocketContext from "@/components/context/socket";
 export default function Entrance(){
     const {setPageTitle} = useContext(StateContext);
     const pageTitle = "Entrance";
+    const {entranceCar,elapsedTime, setElapsedTime} = useContext(SocketContext);
     useEffect(() => {
         setPageTitle(pageTitle);
     },)
+
     return (
         <div className={"container " + classes.containerCustom}>
             <div className="row">
@@ -67,28 +73,8 @@ export default function Entrance(){
             </div>
             <div className={"row "+classes.carAtGateRow}>
                 <div className={"col-12 col-md-6 "+classes.carAtGateCol}>
-                    <h1 className={classes.carAtGateText}>Car at gate</h1>
-                    <div className={"card "+classes.carAtGateCard}>
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col">
-                                    <h4 className={"text-center "+classes.carAtGateValue}>RAB 111 C</h4>
-                                </div>
-                            </div>
-                            <div className={"row "+classes.carAtGateImageRow}>
-                                <div className="col d-flex justify-content-xl-center">
-                                    <picture><Image className={classes.carAtGateImage}
-                                                    fallbackSrc={"/fallback1.svg"}
-                                                  src="https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png"/></picture>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col">
-                                    <p className={"text-end "+classes.carAtGateTimePass}>5s</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <EntranceCar entranceCar = {entranceCar} elapsedTime={elapsedTime} setElapsedTime={setElapsedTime} />
+
                 </div>
                 <div className="col-md-6">
                     <div className={"card "+classes.recentCarsCard}>

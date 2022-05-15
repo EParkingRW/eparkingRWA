@@ -1,3 +1,7 @@
+.overOthers{
+    z-index: 20;
+}
+
 .containerMain {
     /*background: #F7F8FC;*/
     position: relative;
@@ -82,7 +86,7 @@
 }
 
 .modeOfPaymentCard {
-    height: 252px;
+    min-height: 252px;
 }
 
 .mobileMoneyText {

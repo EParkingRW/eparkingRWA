@@ -6,64 +6,75 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner, faFilter, faEllipsisV,faSortAmountDesc } from '@fortawesome/free-solid-svg-icons'
 import StateContext from "@/components/context/StateContext";
 import useColorMode from "@/utils/color-mode";
+import config from "@/config";
+import {convertFromStringToDate} from "@/utils/functions";
+import SocketContext from "@/components/context/socket";
+
 const Clients = () => {
 
     const {newColorMode } = useColorMode();
 
     const {setPageTitle} = useContext(StateContext);
     const [isLight, setLight] = useState(() =>newColorMode==='light');
+
+    const {carsIn} = useContext(SocketContext);
+
+    const [searchText, setSearchText] = useState(null);
+    const [nItemsToShow, setNItemsToShow] = useState(10)
+    const [activePage, setActivePage] = useState(1)
+    const [displayingItems, setDisplayingItems] = useState([])
+    let endIndex = null;
+    let startIndex = null;
+    let numberOfPages = null;
+
+
+    useEffect(() => {
+        let endI = nItemsToShow*activePage < carsIn.length ? nItemsToShow*activePage:carsIn.length
+        endIndex = endI
+        let startI = 0;
+        if(!(endIndex - nItemsToShow <=0)){
+            startI = endIndex - nItemsToShow
+        }
+        startIndex = startI;
+        setDisplayingItems([])
+        carsIn.forEach((each, index) => {
+            if(index >= startI && index < endI){
+                console.log("index " + true)
+                if(searchText===undefined ||searchText==null || searchText==="" || searchText===" "){
+                    setDisplayingItems(displaying => [...displaying, {...each}])
+                }
+                else {
+                    if(each.plateText.toLowerCase().includes(searchText.toLowerCase())){
+                        setDisplayingItems(displaying => [...displaying, {...each}])
+                    }
+                }
+            }
+        })
+        numberOfPages = Math.ceil(displayingItems.length/nItemsToShow)
+    },[searchText, nItemsToShow, activePage, carsIn])
     const pageTitle = "Parking space";
     useEffect(() => {
         setPageTitle(pageTitle);
     })
+
     useEffect(() => {
         setLight(newColorMode==="light")
     },[newColorMode])
-    useEffect(() => {
-        const socket = io("http://localhost:2022");
-        socket.on("connection", () => console.log("connected"));
-        socket.on("disconnect", () => console.log("disconnected"));
-        socket.on("data", (data) => {
-            console.log(data);
-        });
 
-        
-    },[])
-    const clientSampleObject = [
-        {
-            image:"https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png",
-            plateNumber:"IT20BOM",
-            EntranceTime:"7:00 PM",
-            EntranceDate:"24.05.2021",
-            totalMin:"123",
-            money:"20000"
-        },
-        {
-            image:"https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png",
-            plateNumber:"IT20BOM",
-            EntranceTime:"8:30 PM",
-            EntranceDate:"24.05.2021",
-            totalMin:"123",
-            money:"20000"
-        },
-        {
-            image:"https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png",
-            plateNumber:"IT20BOM",
-            EntranceTime:"7:30 PM",
-            EntranceDate:"24.05.2021",
-            totalMin:"123",
-            money:"20000"
-        },
-        {
-            image:"https://bomitsolutions.co.uk/wp-content/uploads/bom-car-number-plate-background.png",
-            plateNumber:"IT20BOM",
-            EntranceTime:"7:30 PM",
-            EntranceDate:"24.05.2021",
-            totalMin:"123",
-            money:"20000"
+    let pageList = [];
+    let i = 1;
+    while (i <= numberOfPages){
+        let list = null;
+        if(i === activePage){
+            list = <li key={"pageList"+i} className="page-item active"><a className="page-link">{i}</a></li>
         }
-
-    ]
+        else {
+            list = <li key={"pageList"+i} onClick={() => {setActivePage(i)}} className="page-item"><a className="page-link">{i}</a></li>
+        }
+        i++;
+        pageList.push(list)
+    }
+    console.log("activePage " + activePage +" num " +numberOfPages)
 
     return (
         <div className="shadow">
@@ -88,7 +99,9 @@ const Clients = () => {
                             <div className="container">
                                 <div className="row">
                                     <div className="col-6 col-lg-8"><label className="col-form-label"><input
-                                        type="search" className="form-control form-control-sm" aria-controls="dataTable"
+                                        type="search" onChange={(event) => {
+                                            setSearchText(event.target.value.trim())
+                                    }} className="form-control form-control-sm" aria-controls="dataTable"
                                         placeholder="Search"/></label></div>
                                     <div className="col-6 col-sm-6 col-md-6 col-lg-4">
                                     {/*    <span>*/}
@@ -114,8 +127,8 @@ const Clients = () => {
                         </tr>
                         </thead>
                         <tbody>
-                        {clientSampleObject.map((each, index) => {
-                            return <Fragment key={each.plateNumber+index}>
+                        {displayingItems?.map((each, index) => {
+                            return <Fragment key={each.plateText+index}>
                                 <SingleRowOfClient client={each}/>
                             </Fragment>
 
@@ -135,21 +148,26 @@ const Clients = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-6 align-self-center">
-                        <p id="dataTable_info" className="dataTables_info" role="status" aria-live="polite">Showing 1 to
-                            10 of 27</p>
+                        <p id="dataTable_info" className="dataTables_info" role="status" aria-live="polite">Showing {startIndex+1} to
+                            {endIndex} of {carsIn.length}</p>
                     </div>
                     <div className="col-md-6">
                         <nav className="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
-                            <ul className="pagination">
-                                <li className="page-item disabled"><a className="page-link" href="#"
-                                                                      aria-label="Previous"><span
-                                    aria-hidden="true">«</span></a></li>
-                                <li className="page-item active"><a className="page-link" href="#">1</a></li>
-                                <li className="page-item"><a className="page-link" href="#">2</a></li>
-                                <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                <li className="page-item"><a className="page-link" href="#" aria-label="Next"><span
-                                    aria-hidden="true">»</span></a></li>
-                            </ul>
+                            {/*<ul className="pagination">
+                                {activePage<=1?"":(
+                                    <li className="page-item disabled"><a className="page-link" href="#"
+                                                                          aria-label="Previous"><span
+                                        aria-hidden="true">«</span></a></li>
+                                )}
+
+                                {pageList}
+                                {
+                                    activePage===numberOfPages?"":(
+                                        <li className="page-item"><a className="page-link" href="#" aria-label="Next"><span
+                                            aria-hidden="true">»</span></a></li>
+                                    )
+                                }
+                            </ul>*/}
                         </nav>
                     </div>
                 </div>
@@ -167,11 +185,13 @@ const Clients = () => {
                             <div className="col-md-4 col-lg-4 col-xl-4 col-xxl-4"><Image alt={""}
                                                                                          className="rounded-circle d-none d-sm-none d-md-inline-block d-lg-inline-block me-2"
                                                                                          fallbackSrc={"/fallback1.svg"}
-                                                                                         boxSize={"35px"} src={client.image}/></div>
+                                                                                         boxSize={"35px"} src={client.imageUrl}/></div>
                             <div className="col-md-8">
-                                <div><span className={classes.tableRowUpperSpan}>{client.plateNumber}</span></div>
+                                <div><span className={classes.tableRowUpperSpan}>{client.plateText}</span></div>
                                 <div><span className={"d-none d-sm-none d-md-flex d-lg-flex " + classes.tableRowLowerSpan}
-                                >last sync 1 min ago</span>
+                                >
+                                    {/*last sync 1 min ago*/}
+                                </span>
                                 </div>
                             </div>
                         </div>
@@ -194,7 +214,10 @@ const Clients = () => {
                         <div className="row">
                             <div className="col-md-12">
                                 <div><span className={classes.tableRowUpperSpan}>{client.totalMin+ " min"}</span></div>
-                                <div><span className={"d-none d-sm-none d-md-flex d-lg-flex "+classes.tableRowLowerSpan}>on 2.05h</span></div>
+                                <div><span className={"d-none d-sm-none d-md-flex d-lg-flex "+classes.tableRowLowerSpan}>
+                                    {client.inHours}
+                                    {/*2.05h*/}
+                                </span></div>
                             </div>
                         </div>
                     </div>
