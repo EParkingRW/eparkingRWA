@@ -4,6 +4,7 @@ import {DatePicker} from "chakra-ui-date-input";
 import {Box, FormLabel, HStack, VStack} from "@chakra-ui/core";
 import {Container} from "next/app";
 import cssClasses from "./Report.module.css";
+import Clients from "@/components/screens/parkingspace/clients";
 
 const Reports = () => {
 
@@ -87,6 +88,7 @@ const Reports = () => {
             </div>
             <div className={cssClasses.mt100}>
 
+                <Clients/>
             </div>
         </div>
 
