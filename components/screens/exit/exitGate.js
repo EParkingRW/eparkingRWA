@@ -9,6 +9,7 @@ import PayByCard from "@/components/screens/exit/PayByCard";
 import SocketContext from "@/components/context/socket";
 import CarAtGate from "@/components/screens/exit/CarAtGate";
 import {convertFromStringToDate} from "@/utils/functions";
+import stateContext from "@/components/context/StateContext";
 
 
 export default function ExitGate(){
@@ -18,23 +19,8 @@ export default function ExitGate(){
     const [showPayByCash, setShowPayByCash] = useState(false);
     const [showPayByCard, setShowPayByCard] = useState(false);
     const [currentPayment, setCurrentPayment] = useState("none");
-    const [exitCar, setExitCar] = useState(null);
-    const {socket} = useContext(SocketContext);
+    const {exitCar} = useContext(SocketContext);
 
-    useEffect(() => {
-        // const socket = io(config.backendURL);
-        socket.on("connection", () => console.log("connected"));
-        socket.on("disconnect", () => console.log("disconnected"));
-        socket.on("exit", (data) => {
-            console.log(data.data);
-            setExitCar({...data.data})
-        });
-        const date = convertFromStringToDate("2022-05-12T12:30:41.813Z")
-        console.log("date")
-        console.log(date.getDay())
-
-
-    },[])
     useEffect(() => {
         setPageTitle(pageTitle);
     },)

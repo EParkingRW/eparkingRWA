@@ -9,29 +9,11 @@ import SocketContext from "@/components/context/socket";
 export default function Entrance(){
     const {setPageTitle} = useContext(StateContext);
     const pageTitle = "Entrance";
-    const [entranceCar, setEntranceCar] = useState(null);
-    const [elapsedTime, setElapsedTime] = useState(0);
-    const {socket} = useContext(SocketContext);
-    useEffect(() => {
-        setInterval(function() {
-            setElapsedTime((i) => i+1);
-        }, 1000);
-    },[])
+    const {entranceCar,elapsedTime, setElapsedTime} = useContext(SocketContext);
     useEffect(() => {
         setPageTitle(pageTitle);
     },)
-    useEffect(() => {
-        // const socket = io(config.backendURL);
-        socket.on("connection", () => console.log("connected"));
-        socket.on("disconnect", () => console.log("disconnected"));
-        socket.on("data", (data) => {
-            console.log(data);
-            setEntranceCar({...data.data})
-            setElapsedTime(0);
-        });
 
-
-    },[])
     return (
         <div className={"container " + classes.containerCustom}>
             <div className="row">
