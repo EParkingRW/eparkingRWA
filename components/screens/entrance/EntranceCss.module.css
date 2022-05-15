@@ -34,7 +34,7 @@
 
 .slotsCardBody {
     border-radius: 5px;
-    height: 124.797px;
+    min-height: 124.797px;
     border: 1px solid #3751FF;
 }
 
@@ -58,7 +58,7 @@
 
 .vehicleInCardBody {
     border-radius: 5px;
-    height: 124.797px;
+    min-height: 124.797px;
     border: 1px solid #DFE0EB;
 }
 
@@ -78,7 +78,7 @@
 
 .totalClientsCardBody {
     border-radius: 5px;
-    height: 124.797px;
+    min-height: 124.797px;
     border: 1px solid #DFE0EB;
 }
 
